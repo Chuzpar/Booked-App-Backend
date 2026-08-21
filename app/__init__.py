@@ -14,6 +14,11 @@ def create_app():
     db.init_app(app)
     CORS(app)
 
+    from app.models import User
+
+    with app.app_context():
+        db.create_all()
+
     @app.route("/")
     def home():
         return {"message": "Booked API is running"}
